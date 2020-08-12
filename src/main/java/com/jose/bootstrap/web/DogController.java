@@ -33,7 +33,7 @@ public class DogController {
             Dog dog = dogService.retrieveDogById(id);
             return new ResponseEntity<>(dog, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -49,7 +49,7 @@ public class DogController {
             String dog = dogService.retrieveDogBreedById(id);
             return new ResponseEntity<>(dog, HttpStatus.OK);
         } catch (EntityNotFoundException e) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 }
