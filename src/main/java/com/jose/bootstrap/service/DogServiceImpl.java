@@ -5,50 +5,30 @@ import com.jose.bootstrap.repository.DogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
-import java.util.ArrayList;
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DogServiceImpl implements DogService {
     @Autowired
     DogRepository dogRepository;
 
-    public List<Dog> retrieveAllDogs() {
+    public List<Dog> retrieveDogs() {
         return (List<Dog>) dogRepository.findAll();
     }
 
-    public Dog retrieveDogById(Long dogId) {
-        return dogRepository.findById(dogId).orElseThrow(EntityNotFoundException::new);
+    public List<String> retrieveDogBreed() {
+        return dogRepository.findAllBreed();
     }
 
-    public String retrieveDogBreed(Dog dog) {
-        return dog.getBreed();
-    }
-
-    public String retrieveDogBreedById(Long dogId) {
-        return dogRepository.findById(dogId).orElseThrow(EntityNotFoundException::new).getBreed();
+    public String retrieveDogBreedById(Long id) {
+        Optional<String> optionalBreed = Optional.ofNullable(dogRepository.findBreedById(id));
+        return optionalBreed.orElseThrow(DogNotFoundException::new);
     }
 
     public List<String> retrieveDogNames() {
-        Iterable<Dog> dogList = dogRepository.findAll();
-        List<String> nameList = new ArrayList<>();
-        dogList.forEach(it -> nameList.add(it.getName()));
-        return nameList;
-    }
-
-    public List<String> retrieveDogBreeds() {
-        Iterable<Dog> dogList = dogRepository.findAll();
-        List<String> breedList = new ArrayList<>();
-        dogList.forEach(it -> breedList.add(it.getBreed()));
-        return breedList;
-    }
-
-    public List<String> retrieveDogOrigins() {
-        Iterable<Dog> dogList = dogRepository.findAll();
-        List<String> originList = new ArrayList<>();
-        dogList.forEach(it -> originList.add(it.getOrigin()));
-        return originList;
+        return dogRepository.findAllName();
     }
 
 

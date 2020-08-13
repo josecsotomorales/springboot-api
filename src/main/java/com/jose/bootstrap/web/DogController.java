@@ -14,42 +14,34 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/dog")
+@RequestMapping("/dogs")
 public class DogController {
     private DogService dogService;
 
     @Autowired
     public void setDogService(DogService dogService) { this.dogService = dogService; }
 
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<List<Dog>> getAllDogs() {
-        List<Dog> list = dogService.retrieveAllDogs();
+        List<Dog> list = dogService.retrieveDogs();
         return new ResponseEntity<>(list, HttpStatus.OK);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Dog> getDogById(@PathVariable("id") Long id) {
-        try {
-            Dog dog = dogService.retrieveDogById(id);
-            return new ResponseEntity<>(dog, HttpStatus.OK);
-        } catch (EntityNotFoundException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
     }
 
     @GetMapping("/breed")
-    public ResponseEntity<List<String>> getAllDogBreeds() {
-        List<String> list = dogService.retrieveDogBreeds();
+    public ResponseEntity<List<String>> getDogBreeds() {
+        List<String> list = dogService.retrieveDogBreed();
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    @GetMapping("/breed/{id}")
-    public ResponseEntity<String> getDogBreedById(@PathVariable("id") Long id) {
-        try {
-            String dog = dogService.retrieveDogBreedById(id);
-            return new ResponseEntity<>(dog, HttpStatus.OK);
-        } catch (EntityNotFoundException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    @GetMapping("/{id}/breed")
+    public ResponseEntity<String> getBreedByID(@PathVariable Long id) {
+        String breed = dogService.retrieveDogBreedById(id);
+        return new ResponseEntity<>(breed, HttpStatus.OK);
+    }
+
+    @GetMapping("/name")
+    public ResponseEntity<List<String>> getDogNames() {
+        List<String> list = dogService.retrieveDogNames();
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 }
