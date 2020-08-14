@@ -1,6 +1,7 @@
 package com.jose.bootstrap.service;
 
 import com.jose.bootstrap.entity.Dog;
+import com.jose.bootstrap.exception.DogNotFoundException;
 import com.jose.bootstrap.repository.DogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

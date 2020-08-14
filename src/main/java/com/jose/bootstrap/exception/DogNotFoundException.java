@@ -1,4 +1,4 @@
-package com.jose.bootstrap.service;
+package com.jose.bootstrap.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
