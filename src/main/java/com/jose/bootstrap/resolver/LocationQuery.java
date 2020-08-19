@@ -6,10 +6,10 @@ import com.jose.bootstrap.repository.LocationRepository;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Query implements GraphQLQueryResolver {
+public class LocationQuery implements GraphQLQueryResolver {
     private final LocationRepository locationRepository;
 
-    public Query(LocationRepository locationRepository) {
+    public LocationQuery(LocationRepository locationRepository) {
         this.locationRepository = locationRepository;
     }
 

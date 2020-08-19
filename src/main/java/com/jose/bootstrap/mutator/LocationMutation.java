@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
-public class Mutation implements GraphQLMutationResolver {
+public class LocationMutation implements GraphQLMutationResolver {
     private final LocationRepository locationRepository;
 
-    public Mutation(LocationRepository locationRepository) {
+    public LocationMutation(LocationRepository locationRepository) {
         this.locationRepository = locationRepository;
     }
 
