@@ -15,9 +15,6 @@ type Query {
     findAllLocations: [Location]!
     findAllDogs: [Dog]!
     findDogById(id:ID!): Dog!
-    #    findDogBreeds
-    #    findDogBreedById
-    #    findAllDogNames
 }
 
 type Mutation {
