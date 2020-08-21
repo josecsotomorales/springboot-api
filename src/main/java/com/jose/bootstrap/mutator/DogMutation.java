@@ -15,7 +15,8 @@ public class DogMutation implements GraphQLMutationResolver {
     public DogMutation(DogRepository dogRepository) { this.dogRepository = dogRepository; }
 
     public boolean deleteDogBreed(String breed) {
-        return dogRepository.deleteDogByBreed(breed);
+        Integer result = dogRepository.deleteDogByBreed(breed);
+        return result != 0;
     }
 
     public Dog updateDogName(String newName, Long id) {
